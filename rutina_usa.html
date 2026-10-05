@@ -135,18 +135,22 @@
 
   <!-- NAVIGATION TABS -->
   <nav class="sticky top-[58px] z-30 bg-dark-900/95 backdrop-blur-md border-b border-dark-800 px-3 py-2">
-    <div class="max-w-md mx-auto grid grid-cols-3 gap-1.5">
+    <div class="max-w-md mx-auto grid grid-cols-4 gap-1.5">
       <button onclick="switchTab('dayA')" id="tabBtn_dayA" class="tab-btn py-2 px-1 rounded-xl font-black text-xs flex flex-col items-center transition bg-brand-600 text-white shadow-md shadow-brand-600/30">
         <span>DÍA A</span>
-        <span class="text-[10px] font-normal opacity-90">Empuje & Pecho</span>
+        <span class="text-[9px] font-normal opacity-90">Empuje</span>
       </button>
       <button onclick="switchTab('dayB')" id="tabBtn_dayB" class="tab-btn py-2 px-1 rounded-xl font-bold text-xs flex flex-col items-center transition bg-dark-800 text-slate-400 hover:text-slate-200">
         <span>DÍA B</span>
-        <span class="text-[10px] font-normal opacity-90">Tracción & Espalda</span>
+        <span class="text-[9px] font-normal opacity-90">Tracción</span>
       </button>
       <button onclick="switchTab('dayC')" id="tabBtn_dayC" class="tab-btn py-2 px-1 rounded-xl font-bold text-xs flex flex-col items-center transition bg-dark-800 text-slate-400 hover:text-slate-200">
         <span>DÍA C</span>
-        <span class="text-[10px] font-normal opacity-90">Reset Ciclista</span>
+        <span class="text-[9px] font-normal opacity-90">Reset</span>
+      </button>
+      <button onclick="switchTab('history')" id="tabBtn_history" class="tab-btn py-2 px-1 rounded-xl font-bold text-xs flex flex-col items-center transition bg-dark-800 text-slate-400 hover:text-slate-200">
+        <span>REGISTRO</span>
+        <span class="text-[9px] font-normal opacity-90">Historial 🔥</span>
       </button>
     </div>
   </nav>
@@ -155,7 +159,7 @@
   <main class="max-w-md mx-auto px-4 py-4 flex-1 w-full space-y-4">
 
     <!-- ATHLETE CONTEXT BANNER -->
-    <div class="bg-gradient-to-r from-blue-950/60 to-slate-900 border border-brand-500/30 rounded-2xl p-3.5 flex items-start gap-3 shadow-md">
+    <div id="topBanner" class="bg-gradient-to-r from-blue-950/60 to-slate-900 border border-brand-500/30 rounded-2xl p-3.5 flex items-start gap-3 shadow-md">
       <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <circle cx="12" cy="12" r="10"></circle>
@@ -184,7 +188,7 @@
 
       <!-- Ejercicios Día A -->
       <div class="space-y-3" id="list_dayA">
-        <!-- Generado dinámicamente o estructurado -->
+        <!-- Generado dinámicamente -->
       </div>
     </div>
 
@@ -222,21 +226,126 @@
       </div>
     </div>
 
-    <!-- FINISHER MODAL / BANNER -->
-    <div class="bg-gradient-to-r from-dark-850 to-dark-800 border border-dark-700/80 rounded-2xl p-4 shadow-lg text-center mt-6">
+    <!-- ==================== CONTENEDOR REGISTRO / HISTORIAL ==================== -->
+    <div id="content_history" class="tab-content hidden space-y-4">
+      <div class="flex items-center justify-between pb-1 border-b border-dark-800">
+        <div>
+          <span class="text-xs font-black text-amber-400 tracking-wider uppercase">Registro Permanente</span>
+          <h2 class="text-base font-extrabold text-white">Historial de Entrenamientos</h2>
+        </div>
+        <button onclick="copyHistorySummary()" class="text-[10.5px] bg-dark-800 border border-dark-700 text-slate-300 hover:text-white px-2.5 py-1 rounded-lg flex items-center gap-1 active:scale-95 transition">
+          <span>📋</span> Copiar
+        </button>
+      </div>
+
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-dark-850 border border-dark-800 rounded-xl p-2.5 text-center">
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Sesiones</span>
+          <span id="statTotalWorkouts" class="text-lg font-black text-brand-400 mt-0.5 block">0</span>
+        </div>
+        <div class="bg-dark-850 border border-dark-800 rounded-xl p-2.5 text-center">
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Minutos</span>
+          <span id="statTotalMinutes" class="text-lg font-black text-emerald-400 mt-0.5 block">0m</span>
+        </div>
+        <div class="bg-dark-850 border border-dark-800 rounded-xl p-2.5 text-center">
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Racha</span>
+          <span id="statStreak" class="text-lg font-black text-amber-400 mt-0.5 block">0 🔥</span>
+        </div>
+      </div>
+
+      <!-- History Cards Container -->
+      <div id="historyList" class="space-y-3">
+        <!-- Dynamic history cards inserted here -->
+      </div>
+    </div>
+
+    <!-- FINISHER BANNER (ONLY SHOWN IN WORKOUT TABS) -->
+    <div id="finishBanner" class="bg-gradient-to-r from-dark-850 to-dark-800 border border-dark-700/80 rounded-2xl p-4 shadow-lg text-center mt-6">
       <h3 class="text-sm font-extrabold text-white flex items-center justify-center gap-1.5">
         <span>🏁</span> ¿Completaste tu sesión de hoy?
       </h3>
-      <p class="text-xs text-slate-400 mt-1">Guarda tu constancia o reinicia los checks para mañana.</p>
+      <p class="text-xs text-slate-400 mt-1">Guarda tu constancia en el historial o reinicia las series para mañana.</p>
       <div class="flex justify-center gap-2 mt-3">
-        <button onclick="finishWorkout()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg shadow-emerald-600/20 active:scale-95 transition">
-          Finalizar Sesión 🎉
+        <button onclick="openFinishModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg shadow-emerald-600/20 active:scale-95 transition">
+          Finalizar y Guardar 🎉
         </button>
         <button onclick="resetCurrentTab()" class="bg-dark-800 hover:bg-dark-700 text-slate-300 text-xs font-bold px-3 py-2 rounded-xl border border-dark-700 active:scale-95 transition">
           Reiniciar Checks
         </button>
       </div>
     </div>
+
+  </main>
+
+  <!-- FINISH WORKOUT MODAL -->
+  <div id="finishModal" class="fixed inset-0 bg-dark-900/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-dark-850 border border-dark-700 rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl">
+      <div class="text-center">
+        <span class="text-3xl">🏆</span>
+        <h3 class="text-base font-extrabold text-white mt-1">¡Gran Entrenamiento!</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Registra los datos para sumarlo a tu historial.</p>
+      </div>
+
+      <!-- Session Metrics in Modal -->
+      <div class="bg-dark-900 border border-dark-800 rounded-xl p-3 grid grid-cols-2 gap-2 text-center">
+        <div>
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Tiempo Activo</span>
+          <p id="modalDurationText" class="text-base font-black text-brand-400">0 min</p>
+        </div>
+        <div>
+          <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Series Hechas</span>
+          <p id="modalSetsText" class="text-base font-black text-emerald-400">0 / 0</p>
+        </div>
+      </div>
+
+      <!-- Bike Status Today -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 mb-1.5">Actividad en Bicicleta hoy:</label>
+        <div class="grid grid-cols-3 gap-1.5 text-center text-xs">
+          <button type="button" onclick="selectBikeStatus(this, 'Pedaleo suave')" class="bike-status-btn border border-brand-500 bg-brand-500/20 text-brand-300 p-2 rounded-xl font-bold">
+            <span class="block text-sm">🚴‍♀️</span>
+            <span class="text-[9.5px]">Suave</span>
+          </button>
+          <button type="button" onclick="selectBikeStatus(this, 'Pedaleo intenso')" class="bike-status-btn border border-dark-700 bg-dark-900 text-slate-400 p-2 rounded-xl font-bold">
+            <span class="block text-sm">🚴‍♂️</span>
+            <span class="text-[9.5px]">Intenso</span>
+          </button>
+          <button type="button" onclick="selectBikeStatus(this, 'Sin bici hoy')" class="bike-status-btn border border-dark-700 bg-dark-900 text-slate-400 p-2 rounded-xl font-bold">
+            <span class="block text-sm">🚫</span>
+            <span class="text-[9.5px]">Sin bici</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rating Stars -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 mb-1">Sensación y Esfuerzo (1 a 5):</label>
+        <div class="flex justify-between px-2 bg-dark-900 border border-dark-800 rounded-xl py-2">
+          <label class="flex flex-col items-center cursor-pointer text-xs"><input type="radio" name="workoutRating" value="1" class="accent-brand-500"> <span class="text-[10px] mt-0.5">1⭐</span></label>
+          <label class="flex flex-col items-center cursor-pointer text-xs"><input type="radio" name="workoutRating" value="2" class="accent-brand-500"> <span class="text-[10px] mt-0.5">2⭐</span></label>
+          <label class="flex flex-col items-center cursor-pointer text-xs"><input type="radio" name="workoutRating" value="3" class="accent-brand-500"> <span class="text-[10px] mt-0.5">3⭐</span></label>
+          <label class="flex flex-col items-center cursor-pointer text-xs"><input type="radio" name="workoutRating" value="4" class="accent-brand-500"> <span class="text-[10px] mt-0.5">4⭐</span></label>
+          <label class="flex flex-col items-center cursor-pointer text-xs"><input type="radio" name="workoutRating" value="5" class="accent-brand-500" checked> <span class="text-[10px] mt-0.5">5⭐</span></label>
+        </div>
+      </div>
+
+      <!-- Free Notes -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 mb-1">Notas (opcional):</label>
+        <input type="text" id="modalWorkoutNote" placeholder="Ej: Buena congestión en pecho, comí hamburguesa dsp..." class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
+      </div>
+
+      <div class="flex space-x-2 pt-1">
+        <button onclick="closeFinishModal()" class="flex-1 bg-dark-800 hover:bg-dark-700 text-slate-300 font-bold py-2.5 rounded-xl text-xs transition">
+          Cancelar
+        </button>
+        <button onclick="saveCompletedWorkout()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-600/30 transition">
+          Guardar Sesión 💾
+        </button>
+      </div>
+    </div>
+  </div>
 
   </main>
 
@@ -764,24 +873,228 @@
       document.getElementById('progressBar').style.width = `${pct}%`;
     }
 
+    let selectedBikeStatus = 'Pedaleo suave';
+
+    function selectBikeStatus(btn, status) {
+      selectedBikeStatus = status;
+      document.querySelectorAll('.bike-status-btn').forEach(b => {
+        b.className = 'bike-status-btn border border-dark-700 bg-dark-900 text-slate-400 p-2 rounded-xl font-bold';
+      });
+      btn.className = 'bike-status-btn border border-brand-500 bg-brand-500/20 text-brand-300 p-2 rounded-xl font-bold';
+    }
+
+    function openFinishModal() {
+      initAudio();
+      const mins = Math.max(1, Math.floor(sessionSeconds / 60));
+      document.getElementById('modalDurationText').innerText = `${mins} min`;
+
+      const exercises = WORKOUT_DATA[currentTab] || [];
+      let totalSets = 0;
+      let doneCount = 0;
+      exercises.forEach(ex => {
+        totalSets += ex.sets;
+        for (let i = 1; i <= ex.sets; i++) {
+          if (completedSets[`${ex.id}_s${i}`]) doneCount++;
+        }
+      });
+      document.getElementById('modalSetsText').innerText = `${doneCount} / ${totalSets}`;
+      document.getElementById('finishModal').classList.remove('hidden');
+    }
+
+    function closeFinishModal() {
+      document.getElementById('finishModal').classList.add('hidden');
+    }
+
+    function saveCompletedWorkout() {
+      initAudio();
+      playFinishFanfare();
+
+      const mins = Math.max(1, Math.floor(sessionSeconds / 60));
+      const exercises = WORKOUT_DATA[currentTab] || [];
+      let totalSets = 0;
+      let doneCount = 0;
+      exercises.forEach(ex => {
+        totalSets += ex.sets;
+        for (let i = 1; i <= ex.sets; i++) {
+          if (completedSets[`${ex.id}_s${i}`]) doneCount++;
+        }
+      });
+
+      const ratingEl = document.querySelector('input[name="workoutRating"]:checked');
+      const rating = ratingEl ? parseInt(ratingEl.value) : 5;
+      const note = document.getElementById('modalWorkoutNote').value.trim();
+
+      const dayNames = {
+        dayA: 'Día A: Empuje & Pecho',
+        dayB: 'Día B: Tracción & Cadena Post.',
+        dayC: 'Día C: Ciclista Reset & Movilidad'
+      };
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+      const newRecord = {
+        id: Date.now(),
+        date: dateStr,
+        timestamp: now.getTime(),
+        dayKey: currentTab,
+        dayName: dayNames[currentTab] || 'Entrenamiento',
+        durationMinutes: mins,
+        setsDone: doneCount,
+        setsTotal: totalSets,
+        bikeStatus: selectedBikeStatus,
+        rating: rating,
+        note: note
+      };
+
+      const history = JSON.parse(localStorage.getItem('usa_workout_history') || '[]');
+      history.unshift(newRecord);
+      localStorage.setItem('usa_workout_history', JSON.stringify(history));
+
+      closeFinishModal();
+
+      // Reset checks for today if user wants
+      if (confirm('¿Deseas reiniciar las series de hoy para empezar limpio en tu próxima sesión?')) {
+        exercises.forEach(ex => {
+          for (let i = 1; i <= ex.sets; i++) {
+            delete completedSets[`${ex.id}_s${i}`];
+          }
+        });
+        localStorage.setItem('usa_workout_sets', JSON.stringify(completedSets));
+      }
+
+      // Stop session stopwatch
+      if (sessionRunning) toggleSessionTimer();
+      sessionSeconds = 0;
+      renderSessionTime();
+
+      switchTab('history');
+    }
+
+    function renderHistory() {
+      const history = JSON.parse(localStorage.getItem('usa_workout_history') || '[]');
+      const container = document.getElementById('historyList');
+      if (!container) return;
+
+      // Calculate totals
+      const totalWorkouts = history.length;
+      let totalMinutes = 0;
+      history.forEach(h => totalMinutes += (h.durationMinutes || 0));
+
+      let streak = Math.min(history.length, 7);
+
+      document.getElementById('statTotalWorkouts').innerText = totalWorkouts;
+      document.getElementById('statTotalMinutes').innerText = `${totalMinutes}m`;
+      document.getElementById('statStreak').innerText = `${streak} 🔥`;
+
+      if (history.length === 0) {
+        container.innerHTML = `
+          <div class="bg-dark-850 border border-dark-800 rounded-2xl p-6 text-center text-slate-400">
+            <span class="text-3xl block mb-2">📋</span>
+            <h4 class="text-sm font-bold text-white">Sin sesiones registradas aún</h4>
+            <p class="text-xs text-slate-400 mt-1">Completa tu entrenamiento de hoy en la pestaña Día A, B o C y presiona "Finalizar y Guardar".</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      history.forEach((rec) => {
+        const stars = '⭐'.repeat(rec.rating || 5);
+        const dayBadgeColor = rec.dayKey === 'dayA' ? 'text-brand-400 bg-brand-500/10 border-brand-500/30' : (rec.dayKey === 'dayB' ? 'text-sky-400 bg-sky-500/10 border-sky-500/30' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30');
+
+        html += `
+          <div class="bg-dark-850 border border-dark-800 rounded-2xl p-3.5 space-y-2 shadow-sm">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-md border ${dayBadgeColor}">
+                  ${rec.dayName}
+                </span>
+                <span class="text-[10.5px] text-slate-400 ml-2">${rec.date}</span>
+              </div>
+              <button onclick="deleteHistoryItem(${rec.id})" class="text-slate-500 hover:text-rose-400 p-1 text-xs active:scale-95" title="Eliminar registro">
+                ✕
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between text-xs pt-1 border-t border-dark-800">
+              <div class="flex items-center gap-3">
+                <span class="text-slate-300">⏱ <strong>${rec.durationMinutes} min</strong></span>
+                <span class="text-slate-300">✓ <strong>${rec.setsDone}/${rec.setsTotal}</strong> series</span>
+              </div>
+              <span class="text-xs">${stars}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] bg-dark-900/60 p-2 rounded-xl text-slate-300">
+              <span>🚴 ${rec.bikeStatus}</span>
+              ${rec.note ? `<span class="italic text-slate-400 truncate max-w-[170px]">"${rec.note}"</span>` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function deleteHistoryItem(id) {
+      if (confirm('¿Eliminar este registro del historial?')) {
+        let history = JSON.parse(localStorage.getItem('usa_workout_history') || '[]');
+        history = history.filter(h => h.id !== id);
+        localStorage.setItem('usa_workout_history', JSON.stringify(history));
+        renderHistory();
+      }
+    }
+
+    function copyHistorySummary() {
+      const history = JSON.parse(localStorage.getItem('usa_workout_history') || '[]');
+      if (history.length === 0) {
+        alert('Aún no tienes entrenamientos guardados para copiar.');
+        return;
+      }
+      let text = `🇺🇸 Mi Progreso de Entrenamiento (USA)\nTotal sesiones: ${history.length}\n\n`;
+      history.slice(0, 5).forEach(h => {
+        text += `• ${h.date}: ${h.dayName} (${h.durationMinutes} min) - ${h.setsDone}/${h.setsTotal} series | ${h.bikeStatus}\n`;
+      });
+      navigator.clipboard.writeText(text).then(() => {
+        alert('📋 ¡Resumen copiado al portapapeles! Puedes pegarlo en WhatsApp o Notas.');
+      }).catch(() => {
+        alert('Copiado:\n\n' + text);
+      });
+    }
+
     function switchTab(tabKey) {
       initAudio();
       playBeep(500, 0.05);
       currentTab = tabKey;
 
-      ['dayA', 'dayB', 'dayC'].forEach(k => {
+      const topBanner = document.getElementById('topBanner');
+      const finishBanner = document.getElementById('finishBanner');
+
+      if (tabKey === 'history') {
+        if (topBanner) topBanner.classList.add('hidden');
+        if (finishBanner) finishBanner.classList.add('hidden');
+      } else {
+        if (topBanner) topBanner.classList.remove('hidden');
+        if (finishBanner) finishBanner.classList.remove('hidden');
+      }
+
+      ['dayA', 'dayB', 'dayC', 'history'].forEach(k => {
         const btn = document.getElementById(`tabBtn_${k}`);
         const content = document.getElementById(`content_${k}`);
         if (k === tabKey) {
           btn.className = 'tab-btn py-2 px-1 rounded-xl font-black text-xs flex flex-col items-center transition bg-brand-600 text-white shadow-md shadow-brand-600/30';
-          content.classList.remove('hidden');
+          if (content) content.classList.remove('hidden');
         } else {
           btn.className = 'tab-btn py-2 px-1 rounded-xl font-bold text-xs flex flex-col items-center transition bg-dark-800 text-slate-400 hover:text-slate-200';
-          content.classList.add('hidden');
+          if (content) content.classList.add('hidden');
         }
       });
 
-      renderExercises(tabKey);
+      if (tabKey === 'history') {
+        renderHistory();
+      } else {
+        renderExercises(tabKey);
+      }
     }
 
     function resetCurrentTab() {
@@ -795,12 +1108,6 @@
         localStorage.setItem('usa_workout_sets', JSON.stringify(completedSets));
         renderExercises(currentTab);
       }
-    }
-
-    function finishWorkout() {
-      playFinishFanfare();
-      const mins = Math.floor(sessionSeconds / 60);
-      alert(`🎉 ¡Excelente entrenamiento!\n\nTiempo total: ${mins} minutos.\nMantuviste el estímulo muscular activo y compensaste la bicicleta.\n\n¡A comer bien y recuperarse!`);
     }
 
     // Inicialización al cargar la página
