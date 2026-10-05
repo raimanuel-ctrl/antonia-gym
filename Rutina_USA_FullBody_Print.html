@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Protocolo USA: Rutina Full Body Diaria Sin Implementos (30-45 min)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.4;
+    font-size: 11px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    color: #0f172a;
+    font-weight: 800;
+  }
+
+  .page {
+    page-break-after: always;
+    height: 100%;
+    min-height: 272mm;
+    max-height: 275mm;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* HEADER & FOOTER */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .page-header .brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: #0284c7;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .page-header .brand span {
+    background: #0284c7;
+    color: white;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .page-header .meta {
+    font-size: 9.5px;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 6px;
+    margin-top: 10px;
+    font-size: 9px;
+    color: #94a3b8;
+  }
+
+  /* COVER STYLING */
+  .cover-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 10px 5px;
+  }
+  .badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .cover-hero {
+    margin: 20px 0 15px 0;
+  }
+  .cover-title {
+    font-size: 32px;
+    line-height: 1.15;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .cover-title span {
+    color: #0284c7;
+    background: linear-gradient(135deg, #0284c7, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover-subtitle {
+    font-size: 13.5px;
+    color: #475569;
+    font-weight: 500;
+    max-width: 95%;
+    line-height: 1.45;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .profile-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .profile-card .num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0284c7;
+    margin-bottom: 2px;
+  }
+  .profile-card .lbl {
+    font-size: 9px;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .cover-highlights {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 14px;
+    padding: 18px 20px;
+    color: #ffffff;
+    margin: 12px 0;
+  }
+  .cover-highlights h3 {
+    color: #38bdf8;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .highlight-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .hl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hl-bullet {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    font-weight: 800;
+    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hl-text strong {
+    display: block;
+    font-size: 11px;
+    color: #f8fafc;
+  }
+  .hl-text p {
+    font-size: 9.5px;
+    color: #94a3b8;
+    line-height: 1.3;
+  }
+
+  /* SYSTEM SECTION & TABLES */
+  .section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-desc {
+    font-size: 10px;
+    color: #64748b;
+    margin-bottom: 10px;
+  }
+
+  .alert-box {
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-warning {
+    background-color: #fff7ed;
+    border: 1px solid #ffedd5;
+    border-left: 4px solid #f97316;
+  }
+  .alert-success {
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-left: 4px solid #16a34a;
+  }
+  .alert-info {
+    background-color: #f0f9ff;
+    border: 1px solid #e0f2fe;
+    border-left: 4px solid #0284c7;
+  }
+  .alert-title {
+    font-weight: 800;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  .alert-warning .alert-title { color: #9a3412; }
+  .alert-success .alert-title { color: #166534; }
+  .alert-info .alert-title { color: #075985; }
+  .alert-p {
+    font-size: 9.5px;
+    color: #334155;
+    line-height: 1.35;
+  }
+
+  /* SPLIT ROTATION TABLE */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 10px;
+  }
+  .custom-table th {
+    background: #0f172a;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .custom-table th:first-child { border-top-left-radius: 6px; }
+  .custom-table th:last-child { border-top-right-radius: 6px; }
+  .custom-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+  }
+  .custom-table tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  /* EXERCISE CARDS GRID */
+  .exercises-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 4px;
+  }
+  .ex-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .ex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 4px;
+  }
+  .ex-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ex-num {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #0284c7;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .ex-title {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+  }
+  .ex-sub {
+    font-size: 8.5px;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .ex-dosis {
+    background: #f0f9ff;
+    color: #0284c7;
+    border: 1px solid #bae6fd;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .ex-body {
+    font-size: 9px;
+    color: #334155;
+    line-height: 1.35;
+  }
+  .ex-field {
+    margin-bottom: 3px;
+  }
+  .ex-field strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+  .ex-note {
+    background: #f8fafc;
+    border-left: 3px solid #0284c7;
+    border-radius: 0 4px 4px 0;
+    padding: 3px 6px;
+    font-size: 8.5px;
+    color: #475569;
+    margin-top: 4px;
+  }
+  .ex-note strong {
+    color: #0369a1;
+  }
+
+  /* WORKOUT SUMMARY BANNER */
+  .workout-summary-bar {
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 9.5px;
+    font-weight: 600;
+  }
+  .summary-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #334155;
+  }
+  .summary-badge strong {
+    color: #0f172a;
+  }
+
+  /* PROTOCOL CALLOUT */
+  .protocol-box {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 8px;
+  }
+  .protocol-box h4 {
+    font-size: 11px;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  .protocol-box p {
+    font-size: 9px;
+    color: #475569;
+    line-height: 1.35;
+  }
+
+  /* NUTRITION & TRACKING */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .card-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .card-box h4 {
+    font-size: 11px;
+    color: #0f172a;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 3px;
+  }
+  .bullet-list {
+    list-style: none;
+    font-size: 9px;
+    color: #334155;
+    line-height: 1.4;
+  }
+  .bullet-list li {
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 4px;
+  }
+  .bullet-list li::before {
+    content: "•";
+    color: #0284c7;
+    position: absolute;
+    left: 2px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  /* LOG TABLE */
+  .log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5px;
+    margin-top: 8px;
+  }
+  .log-table th {
+    background: #1e293b;
+    color: white;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: 700;
+  }
+  .log-table td {
+    border: 1px solid #cbd5e1;
+    padding: 5px 6px;
+    text-align: center;
+    color: #475569;
+    height: 18px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1: PORTADA & ARQUITECTURA ==================== -->
+  <div class="page">
+    <div>
+      <div class="page-header">
+        <div class="brand">
+          HIGH-PERFORMANCE USA <span>NO-EQUIPMENT</span>
+        </div>
+        <div class="meta">Guía Operativa & Manual de Entrenamiento Diario</div>
+      </div>
+
+      <div class="cover-container">
+        <div>
+          <div class="cover-top">
+            <span class="badge-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Calistenia de Alta Tensión & Compensación de Ciclismo
+            </span>
+          </div>
+
+          <div class="cover-hero">
+            <h1 class="cover-title">Protocolo Diario <span>Full Body</span></h1>
+            <p class="cover-subtitle">
+              Plan estructurado de <strong>30 a 45 minutos diarios</strong> diseñado para mantener masa muscular, fuerza funcional y tono en Estados Unidos sin implementos, neutralizando las compensaciones posturales del ciclismo y el exceso calórico.
+            </p>
+          </div>
+
+          <div class="profile-grid">
+            <div class="profile-card">
+              <div class="num">30–45'</div>
+              <div class="lbl">Duración Diaria</div>
+            </div>
+            <div class="profile-card">
+              <div class="num">7 Días</div>
+              <div class="lbl">Frecuencia / Semana</div>
+            </div>
+            <div class="profile-card">
+              <div class="num">0 kg</div>
+              <div class="lbl">Implementos</div>
+            </div>
+            <div class="profile-card">
+              <div class="num">A / B / C</div>
+              <div class="lbl">Sistema Ondulante</div>
+            </div>
+          </div>
+
+          <div class="cover-highlights">
+            <h3>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Pilares Fundamentales del Protocolo
+            </h3>
+            <div class="highlight-list">
+              <div class="hl-item">
+                <div class="hl-bullet">1</div>
+                <div class="hl-text">
+                  <strong>Sobrecarga Mecánica Calisténica</strong>
+                  <p>Tempo estricto (3-1-1), desventaja de palancas y trabajo unilateral para generar hipertrofia real sin mancuernas.</p>
+                </div>
+              </div>
+              <div class="hl-item">
+                <div class="hl-bullet">2</div>
+                <div class="hl-text">
+                  <strong>Antídoto a la Postura de Ciclismo</strong>
+                  <p>Apertura activa de flexores de cadera acortados y tracción escapular para contrarrestar la cifosis y hombros rotados.</p>
+                </div>
+              </div>
+              <div class="hl-item">
+                <div class="hl-bullet">3</div>
+                <div class="hl-text">
+                  <strong>Activación Metabólica y Gasto Calórico</strong>
+                  <p>Mantiene el efecto EPOC y la partición de nutrientes óptima para procesar la comida abundante sin ganar grasa.</p>
+                </div>
+              </div>
+              <div class="hl-item">
+                <div class="hl-bullet">4</div>
+                <div class="hl-text">
+                  <strong>Rotación Diaria Antilesiones (A/B)</strong>
+                  <p>Alternancia inteligente entre empuje y tracción para proteger codos y muñecas al entrenar todos los días seguidos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="alert-box alert-info">
+            <div class="alert-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:3px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Estructura Semanal Recomendada
+            </div>
+            <div class="alert-p">
+              Alterna <strong>Día A</strong> y <strong>Día B</strong> sucesivamente (Lunes: A, Martes: B, Miércoles: A, Jueves: B, Viernes: A, Sábado: B). El <strong>Día C</strong> es un comodín de recuperación activa, descompresión articular y movilidad para domingos o días de fatiga por pedaleo intenso.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div>Protocolo USA Bodyweight · Alto Rendimiento</div>
+      <div>Página 1 de 5</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: CIENCIA DEL MOVIMIENTO & CALENTAMIENTO ==================== -->
+  <div class="page">
+    <div>
+      <div class="page-header">
+        <div class="brand">HIGH-PERFORMANCE USA <span>METODOLOGÍA</span></div>
+        <div class="meta">Sobrecarga Progresiva Sin Pesas & Calentamiento</div>
+      </div>
+
+      <div class="section-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Cómo Estimular Hipertrofia y Tono Sin Mancuernas
+      </div>
+      <div class="section-desc">
+        Cuando estás acostumbrado a entrenar duro, hacer repeticiones rápidas y fáciles no sirve. Se aplican cuatro principios biomecánicos clave:
+      </div>
+
+      <div class="exercises-grid" style="margin-bottom: 12px;">
+        <div class="ex-card">
+          <div class="ex-title" style="color: #0284c7;">1. El Factor Tempo (3-1-1-0)</div>
+          <div class="ex-body" style="margin-top: 4px;">
+            <strong>3 seg excéntrico (bajada):</strong> rompe fibras musculares y elimina el rebote.<br>
+            <strong>1 seg isométrico:</strong> pausa abajo bajo máxima tensión y estiramiento.<br>
+            <strong>1 seg concéntrico:</strong> subida explosiva y controlada.
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-title" style="color: #0284c7;">2. Desventaja Mecánica y Ángulos</div>
+          <div class="ex-body" style="margin-top: 4px;">
+            Elevar los pies sobre la cama en flexiones o pike push-ups traslada hasta el <strong>75% del peso corporal</strong> a los hombros y pecho superior. Cambiar la inclinación cambia la carga.
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-title" style="color: #0284c7;">3. Trabajo Unilateral Obligatorio</div>
+          <div class="ex-body" style="margin-top: 4px;">
+            Al pasar de dos piernas a una sola (Búlgaras profundas, Single-Leg Hip Thrust), la demanda de fuerza y reclutamiento neuromuscular se <strong>duplica</strong>, estimulando estabilizadores profundos.
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-title" style="color: #0284c7;">4. Implementos Caseros de Alto Impacto</div>
+          <div class="ex-body" style="margin-top: 4px;">
+            • <strong>Toalla de baño:</strong> Remos en pomo de puerta y curls deslizantes en suelo liso.<br>
+            • <strong>Mochila con botellas (opcional):</strong> Suma 8-12 kg si quieres carga externa adicional.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Calentamiento Dinámico & Activación Postural (4–5 Minutos)
+      </div>
+      <div class="section-desc">
+        Realizar siempre antes de comenzar el Día A o Día B para desenganchar la espalda y activar la cadera:
+      </div>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Ejercicio de Activación</th>
+            <th style="width: 22%;">Dosis / Tiempo</th>
+            <th style="width: 50%;">Objetivo & Enfoque Biomecánico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rotación de Muñecas & Hombros</strong></td>
+            <td>10 círculos / sentido</td>
+            <td>Lubricación del carpo y manguito rotador antes del apoyo en flexiones y planchas.</td>
+          </tr>
+          <tr>
+            <td><strong>World's Greatest Stretch</strong></td>
+            <td>5 reps dinámicas / lado</td>
+            <td>Zancada profunda + rotación torácica al techo. Abre cadera y descomprime columna dorsal.</td>
+          </tr>
+          <tr>
+            <td><strong>Cat-Cow & Descompresión</strong></td>
+            <td>10 respiraciones</td>
+            <td>Extensión y flexión segmentaria de la columna, aliviando la curvatura de la bicicleta.</td>
+          </tr>
+          <tr>
+            <td><strong>Deep Squat Pry (Sentadilla con Codos)</strong></td>
+            <td>45–60 segundos</td>
+            <td>Bajar a sentadilla profunda, abrir rodillas con codos empujando hacia afuera. Tobillos y aductores.</td>
+          </tr>
+          <tr>
+            <td><strong>Flexiones Escapulares (Scapular Push-ups)</strong></td>
+            <td>10–12 repeticiones</td>
+            <td>En plancha alta, juntar y separar escápulas sin doblar codos. Activa serrato anterior.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="protocol-box">
+        <h4>⚡ Regla del RIR (Repeticiones en Reserva)</h4>
+        <p>
+          En todas las series principales, debes terminar cada serie cuando sientas que te quedan <strong>1 a 2 repeticiones antes del fallo muscular total (RIR 1–2)</strong>. Si llegas a 15 repeticiones sin sentir quemazón o desaceleración, reduce el descanso a 45s o añade una pausa de 2 segundos en el punto más bajo.
+        </p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div>Protocolo USA Bodyweight · Metodología</div>
+      <div>Página 2 de 5</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3: DÍA A (EMPUJE & CADENA ANTERIOR) ==================== -->
+  <div class="page">
+    <div>
+      <div class="page-header">
+        <div class="brand">HIGH-PERFORMANCE USA <span>DÍA A</span></div>
+        <div class="meta">Empuje Torso + Cadena Anterior (35–40 min)</div>
+      </div>
+
+      <div class="workout-summary-bar">
+        <div class="summary-badge">
+          <span>Enfoque:</span> <strong>Pectoral · Hombros · Tríceps · Cuádriceps · Core</strong>
+        </div>
+        <div class="summary-badge">
+          <span>Tiempo:</span> <strong>35–40 min</strong>
+        </div>
+        <div class="summary-badge">
+          <span>Descanso:</span> <strong>45–60 seg</strong>
+        </div>
+      </div>
+
+      <div class="exercises-grid">
+        <!-- Ex 1 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">1</div>
+              <div>
+                <div class="ex-title">Sentadilla Búlgara con Pausa</div>
+                <div class="ex-sub">Cuádriceps & Estabilidad Unilateral</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 10–12 / pierna</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Pie trasero en cama o silla. Torso ligeramente inclinado hacia adelante. Baja lento en 3 seg hasta rozar el suelo con rodilla trasera.</div>
+            <div class="ex-field"><strong>Pausa:</strong> 1 segundo abajo sin rebotar. Sube empujando fuerte con el talón delantero.</div>
+            <div class="ex-note"><strong>Clave:</strong> Excelente para nivelar desbalances de fuerza provocados por el pedaleo.</div>
+          </div>
+        </div>
+
+        <!-- Ex 2 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">2</div>
+              <div>
+                <div class="ex-title">Flexiones Progresivas (Tempo 3-1-1)</div>
+                <div class="ex-sub">Pectoral & Deltoides Anterior</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 12–15 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Codos a 45° del cuerpo, manos firmes. 3 seg bajando, 1 seg pausa con pecho a 2 cm del suelo, empuje explosivo.</div>
+            <div class="ex-field"><strong>Progresión Pro:</strong> Pies elevados en cama (declinadas) o Flexiones Arquero alternando brazos.</div>
+            <div class="ex-note"><strong>Clave:</strong> Tensión abdominal total; no dejes caer la pelvis ni arquees la zona lumbar.</div>
+          </div>
+        </div>
+
+        <!-- Ex 3 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">3</div>
+              <div>
+                <div class="ex-title">Pike Push-ups (Press Militar)</div>
+                <div class="ex-sub">Hombros (Deltoides) & Tríceps</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 8–12 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Cuerpo en "V" invertida con cadera alta. Baja la coronilla hacia adelante formando un triángulo imaginario con las manos.</div>
+            <div class="ex-field"><strong>Progresión:</strong> Pies apoyados en silla o cama para inclinar más peso sobre los hombros.</div>
+            <div class="ex-note"><strong>Clave:</strong> Construye fuerza vertical sin necesidad de mancuernas o barras.</div>
+          </div>
+        </div>
+
+        <!-- Ex 4 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">4</div>
+              <div>
+                <div class="ex-title">Sissy Squats Corporales Asistidos</div>
+                <div class="ex-sub">Cuádriceps Aislado & Tendón Rotuliano</div>
+              </div>
+            </div>
+            <div class="ex-dosis">3 × 12–15 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Apóyate con una mano en una pared o puerta. Eleva talones y lleva rodillas hacia adelante mientras el torso va hacia atrás.</div>
+            <div class="ex-field"><strong>Rango:</strong> Baja hasta sentir elongación máxima de cuádriceps, regresa contrayendo fuerte.</div>
+            <div class="ex-note"><strong>Clave:</strong> Fortalece los tendones de la rodilla, complementando el pedaleo.</div>
+          </div>
+        </div>
+
+        <!-- Ex 5 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">5</div>
+              <div>
+                <div class="ex-title">Skull Crushers en Suelo / Fondos</div>
+                <div class="ex-sub">Tríceps (Aislamiento de Codo)</div>
+              </div>
+            </div>
+            <div class="ex-dosis">3 × 12–15 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Opción Suelo:</strong> Desde plancha alta, apoya antebrazos en suelo y empuja con palmas simultáneamente hasta bloquear codos.</div>
+            <div class="ex-field"><strong>Opción Borde:</strong> Fondos en borde de cama o silla con piernas estiradas y bajada profunda.</div>
+            <div class="ex-note"><strong>Clave:</strong> Mantén codos cerrados sin que se abran hacia los costados.</div>
+          </div>
+        </div>
+
+        <!-- Ex 6 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">6</div>
+              <div>
+                <div class="ex-title">Hollow Body Hold + Deadbugs</div>
+                <div class="ex-sub">Core Antiextensión & Recto Abdominal</div>
+              </div>
+            </div>
+            <div class="ex-dosis">3 × 30s + 12 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Lumbar completamente aplastada contra el suelo. Mantén brazos y piernas estiradas a 30° en Hollow Hold 30 seg.</div>
+            <div class="ex-field"><strong>Inmediato:</strong> Ejecuta 12 reps de Deadbug alternando brazo y pierna contraria lento.</div>
+            <div class="ex-note"><strong>Clave:</strong> Si la lumbar se despega del suelo, sube un poco las piernas.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="protocol-box" style="margin-top: 8px;">
+        <h4>🔥 Finisher Metabólico Opcional Día A (3–4 Minutos)</h4>
+        <p>
+          <strong>Tabata Sprawl & Climbers:</strong> 4 rondas de 20s de Sprawls rápidos (medio burpee con salto) + 10s descanso, seguido de 20s de Mountain climbers explosivos + 10s descanso. ¡Eleva el gasto calórico al máximo!
+        </p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div>Protocolo USA Bodyweight · Rutina Día A</div>
+      <div>Página 3 de 5</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 4: DÍA B (TRACCIÓN & CADENA POSTERIOR) ==================== -->
+  <div class="page">
+    <div>
+      <div class="page-header">
+        <div class="brand">HIGH-PERFORMANCE USA <span>DÍA B</span></div>
+        <div class="meta">Tracción + Cadena Posterior + Potencia (35–40 min)</div>
+      </div>
+
+      <div class="workout-summary-bar">
+        <div class="summary-badge">
+          <span>Enfoque:</span> <strong>Espalda · Dorsal · Glúteos · Isquios · Oblicuos</strong>
+        </div>
+        <div class="summary-badge">
+          <span>Tiempo:</span> <strong>35–40 min</strong>
+        </div>
+        <div class="summary-badge">
+          <span>Descanso:</span> <strong>45–60 seg</strong>
+        </div>
+      </div>
+
+      <div class="exercises-grid">
+        <!-- Ex 1 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">1</div>
+              <div>
+                <div class="ex-title">Remo con Toalla en Puerta / Mesa</div>
+                <div class="ex-sub">Espalda Media, Romboides & Dorsal</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 12–15 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Pasa toalla por pomo de puerta o esquina superior de puerta cerrada. Agarre firme, cuerpo inclinado a 45°. Tracciona con codos atrás.</div>
+            <div class="ex-field"><strong>Variante Mesa:</strong> Tumbado boca arriba bajo una mesa sólida, agarrar borde y traccionar llevando pecho arriba.</div>
+            <div class="ex-note"><strong>Clave:</strong> Pausa de 2 seg apretando omóplatos. Neutraliza la espalda encorvada del ciclista.</div>
+          </div>
+        </div>
+
+        <!-- Ex 2 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">2</div>
+              <div>
+                <div class="ex-title">Single-Leg Hip Thrust en Sofá / Cama</div>
+                <div class="ex-sub">Glúteo Mayor & Cadena Posterior</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 12–15 / pierna</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Espalda alta apoyada en borde de cama. Una pierna flexionada en el aire. Baja cadera y empuja fuerte con el talón apoyado.</div>
+            <div class="ex-field"><strong>Contracción:</strong> Bloquea la cadera arriba alineada con el torso y aprieta el glúteo 2 segundos.</div>
+            <div class="ex-note"><strong>Clave:</strong> Despierta los glúteos dormidos por las horas sentado en el sillín de la bici.</div>
+          </div>
+        </div>
+
+        <!-- Ex 3 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">3</div>
+              <div>
+                <div class="ex-title">Curl Femoral Deslizante con Toalla</div>
+                <div class="ex-sub">Isquiotibiales & Rodilla</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 10–12 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Boca arriba en suelo liso (madera o baldosa), toalla bajo talones. Eleva cadera y desliza talones hacia adelante y jala de vuelta a glúteos.</div>
+            <div class="ex-field"><strong>Alternativa Alfombra:</strong> Peso muerto rumano a una pierna (Single-Leg RDL) controlado sin peso.</div>
+            <div class="ex-note"><strong>Clave:</strong> Uno de los mejores ejercicios de calistenia para isquiosurales potentes.</div>
+          </div>
+        </div>
+
+        <!-- Ex 4 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">4</div>
+              <div>
+                <div class="ex-title">Prone Y-T-W + Floor Lat Pulls</div>
+                <div class="ex-sub">Deltoides Posterior & Trapecio Medio</div>
+              </div>
+            </div>
+            <div class="ex-dosis">4 × 12–15 reps</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Tumbado boca abajo, agarra toalla abierta y tira hacia afuera constantemente como si quisieras romperla por la mitad.</div>
+            <div class="ex-field"><strong>Movimiento:</strong> Despega pecho del suelo y jala la toalla al pecho/nuca juntando escápulas al máximo.</div>
+            <div class="ex-note"><strong>Clave:</strong> Excelente hipertrofia dorsal y corrección postural inmediata.</div>
+          </div>
+        </div>
+
+        <!-- Ex 5 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">5</div>
+              <div>
+                <div class="ex-title">Skater Squats / Zancadas Inversas</div>
+                <div class="ex-sub">Glúteo, Isquio & Estabilidad</div>
+              </div>
+            </div>
+            <div class="ex-dosis">3 × 12 reps / pierna</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> Da un paso amplio hacia atrás, bajando en 3 segundos con control. La rodilla delantera debe estar firme sin desviarse hacia adentro.</div>
+            <div class="ex-field"><strong>Subida:</strong> Empuja desde el talón delantero para reclutar glúteo en vez de cuádriceps.</div>
+            <div class="ex-note"><strong>Clave:</strong> El torso ligeramente inclinado al frente maximiza el estímulo del glúteo.</div>
+          </div>
+        </div>
+
+        <!-- Ex 6 -->
+        <div class="ex-card">
+          <div class="ex-header">
+            <div class="ex-title-wrap">
+              <div class="ex-num">6</div>
+              <div>
+                <div class="ex-title">Plancha Lateral + Abducción</div>
+                <div class="ex-sub">Glúteo Medio & Oblicuos</div>
+              </div>
+            </div>
+            <div class="ex-dosis">3 × 12 / lado + 10s</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-field"><strong>Técnica:</strong> En plancha lateral sobre antebrazo, baja la cadera hacia el suelo y elévala al máximo 12 veces por lado.</div>
+            <div class="ex-field"><strong>Final:</strong> En la repetición 12, despega la pierna superior manteniéndola arriba 10 segundos en estático.</div>
+            <div class="ex-note"><strong>Clave:</strong> El glúteo medio previene molestias de rodilla y estabiliza el pedaleo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="protocol-box" style="margin-top: 8px;">
+        <h4>🔥 Finisher Metabólico Opcional Día B (4 Minutos)</h4>
+        <p>
+          <strong>EMOM 4 min:</strong> Minutos 1 y 3 = 15 Zancadas explosivas alternadas (Jumping lunges controladas). Minutos 2 y 4 = 25 Russian Twists con pies en el aire apretando abdomen.
+        </p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div>Protocolo USA Bodyweight · Rutina Día B</div>
+      <div>Página 4 de 5</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 5: DÍA C, NUTRICIÓN EN USA & TRACKER ==================== -->
+  <div class="page">
+    <div>
+      <div class="page-header">
+        <div class="brand">HIGH-PERFORMANCE USA <span>RESET & CONTROL</span></div>
+        <div class="meta">Día C Movilidad · Nutrición USA · Planilla de Registro</div>
+      </div>
+
+      <div class="section-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Día C: "Ciclista Reset" & Movilidad Expres (30 Min)
+      </div>
+      <div class="section-desc">
+        Para domingos, viajes o días con piernas fatigadas por la bicicleta. Sin fatiga muscular, pero con alto flujo sanguíneo y descompresión:
+      </div>
+
+      <table class="custom-table" style="margin-bottom: 10px;">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Bloque / Ejercicio</th>
+            <th style="width: 25%;">Dosis</th>
+            <th style="width: 45%;">Beneficio Clínico y Postural</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Couch Stretch (Elongación de Sofá)</strong></td>
+            <td>90 seg / pierna</td>
+            <td>Apertura profunda de cuádriceps y psoas ilíaco. Libera presión lumbar acumulada.</td>
+          </tr>
+          <tr>
+            <td><strong>90/90 Movilidad de Cadera</strong></td>
+            <td>2 minutos continuo</td>
+            <td>Rotación interna y externa de cadera, mejorando fluidez articular.</td>
+          </tr>
+          <tr>
+            <td><strong>Child's Pose a Cobra Flow</strong></td>
+            <td>8 ciclos lentos</td>
+            <td>Descompresión de discos intervertebrales y estiramiento de fascia toraco-lumbar.</td>
+          </tr>
+          <tr>
+            <td><strong>Circuito Metabólico Flow (3 Rond.)</strong></td>
+            <td>45s trabajo / 15s des.</td>
+            <td>Bear Crawl Hold + Wall Sit + Nadadores Prone + Saltos suaves en el lugar.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2col">
+        <div class="card-box">
+          <h4>🇺🇸 Tácticas de Nutrición en USA</h4>
+          <ul class="bullet-list">
+            <li><strong>Proteína Primero:</strong> Apunta a huevos, pechuga de pollo, carnes magras o atún en cada comida grande.</li>
+            <li><strong>El Truco "Dressing on the side":</strong> En restaurantes americanos, pide salsas y aderezos aparte; ahorra 300–500 kcal ocultas.</li>
+            <li><strong>Agua + Electrolitos:</strong> Con bici diaria y clima seco/calefacción, bebe mínimo 2.5 a 3 litros al día.</li>
+            <li><strong>Carbohidratos cerca de la Bici:</strong> Come la mayor parte de carbohidratos (pasta, arroz, frutas) antes o después de pedalear.</li>
+          </ul>
+        </div>
+
+        <div class="card-box">
+          <h4>📱 App Web en tu Teléfono</h4>
+          <ul class="bullet-list">
+            <li><strong>PWA Móvil:</strong> Abre la versión HTML en Safari o Chrome de tu teléfono.</li>
+            <li><strong>Agregar a Pantalla de Inicio:</strong> Toca compartir y "Añadir a pantalla de inicio" para tenerla como app nativa.</li>
+            <li><strong>Cronómetro Integrado:</strong> El temporizador emite pitidos audibles en cada descanso de 45s/60s.</li>
+            <li><strong>Offline Ready:</strong> Funciona sin necesidad de internet en cualquier lugar donde estés.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 10px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Registro de Cumplimiento Semanal (30–45 Min Diarios)
+      </div>
+
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Sesión</th>
+            <th>Duración</th>
+            <th>Bici (km / min)</th>
+            <th>Sensación (1-5 ⭐)</th>
+            <th>Check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lunes</td><td>Día A: Empuje</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Martes</td><td>Día B: Tracción</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Miércoles</td><td>Día A: Empuje</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Jueves</td><td>Día B: Tracción</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Viernes</td><td>Día A: Empuje</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Sábado</td><td>Día B: Tracción</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+          <tr><td>Domingo</td><td>Día C: Reset / Mov.</td><td>__ min</td><td>__ min</td><td>⭐⭐⭐⭐⭐</td><td>[ &nbsp; ]</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <div>Protocolo USA Bodyweight · Reset & Control Semanal</div>
+      <div>Página 5 de 5</div>
+    </div>
+  </div>
+
+</body>
+</html>

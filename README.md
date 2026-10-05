@@ -31,3 +31,19 @@ Aplicación web móvil e interactiva diseñada especialmente para el entrenamien
   * **En vivo:** Guarda instantáneamente cada peso y serie en la memoria local del teléfono (`localStorage`). No se pierde nada al cerrar la app.
   * **Pestaña Historial:** Archiva todas las sesiones finalizadas con fecha, valoración (1–5 ⭐) y semáforo de cadera.
   * **Google Drive:** Permite respaldar todo el historial en tu cuenta de Google Drive en 1 toque mediante el menú compartir de iOS o exportar en CSV para Google Sheets.
+
+---
+
+# 🇺🇸 USA High-Performance · Rutina Diaria Full Body (Sin Implementos)
+
+Protocolo de entrenamiento diario de **30 a 45 minutos** para realizar en Estados Unidos (hotel, departamento o parque) sin equipamiento. Diseñado para atletas con base sólida de entrenamiento que buscan mantener masa muscular, densidad y fuerza funcional, contrarrestando la postura cifótica del ciclismo y el superávit calórico.
+
+* 🌐 **App Web Móvil (USA):** [https://raimanuel-ctrl.github.io/antonia-gym/rutina_usa.html](https://raimanuel-ctrl.github.io/antonia-gym/rutina_usa.html)
+* 📄 **Manual en PDF A4:** [Descargar Rutina_USA_FullBody.pdf](Rutina_USA_FullBody.pdf)
+* 📖 **Guía Técnica y Biomecánica:** [Rutina_USA_NoEquipment_Guia.md](Rutina_USA_NoEquipment_Guia.md)
+
+### ⚡ Estructura del Protocolo
+* **Día A · Empuje & Cadena Anterior (35-40 min):** Sentadillas búlgaras profundas, Flexiones tempo 3-1-1 / Arquero, Pike push-ups (press militar corporal), Sissy squats asistidos, Skull crushers en suelo, Hollow body + deadbugs y finisher metabólico.
+* **Día B · Tracción & Cadena Posterior (35-40 min):** Remos con toalla en pomo de puerta / bajo mesa, Single-leg hip thrust en sofá/cama, Curl femoral deslizante con toalla, Prone Y-T-W + floor lat pulls con toalla tensada, Skater squats y plancha lateral con abducción.
+* **Día C · "Ciclista Reset" & Movilidad (30 min):** Descompresión de psoas (couch stretch), rotaciones 90/90, descompresión espinal de cobra a child's pose y flujo metabólico low-impact.
+* **Sonido Sintetizado Offline:** Cronómetro de descanso con bips en los últimos 3 segundos y fanfarria final generado por Web Audio API sin necesidad de conexión.
